@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Makeitsnappy</title>
+  <title><%= yield(:title) %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<div id="container">
+	<div id="header">
+		<%= link_to 'Make It Snappy Q&A', root_path %>
+	</div><!-- end of header -->
+
+	<div id="nav">
+		<ul>
+			<li>
+				<%= link_to 'Home', root_path %>
+			</li>
+		</ul>
+	</div><!-- end of nav -->
+
+	<div id="content">
+		<% flash.each do |key, value| %>
+			<p id="message"><%= value %></p>
+		<% end %>
+		<%= yield %>
+	</div><!-- end of content -->
+
+	<div id="footer">
+		&copy; Make It Snappy <%= Date.today.year %>
+	</div><!-- end of footer -->
+</div><!-- end of container -->
 
 </body>
 </html>
